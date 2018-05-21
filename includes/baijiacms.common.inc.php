@@ -228,6 +228,9 @@ function themePage($filename)
         $cachefile = WEB_ROOT . '/cache/' . SESSION_PREFIX . '/default/' . $filename . '.php';
         $theme = 'default';
     }
+    echo $cachefile;
+    echo $template;
+    exit;
 
     if (!is_file($cachefile) || DEVELOPMENT) {
         $str = file_get_contents($template);

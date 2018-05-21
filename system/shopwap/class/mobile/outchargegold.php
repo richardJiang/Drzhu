@@ -54,8 +54,8 @@ if ($op == 'display') {
     if (empty($applygold)) {
         $applygold = '0';
     }
-    include themePage('outchargegold_history');
-    //include themePage('outchargegold');
+    //include themePage('outchargegold_history');
+    include themePage('outchargegold');
     exit;
 }
 
