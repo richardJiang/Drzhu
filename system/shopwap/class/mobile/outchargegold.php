@@ -56,7 +56,7 @@ if ($op == 'display') {
     //佣金计算
     $memberGold = mysqld_select("select gold,ffee+pfee+mfee as makeFee from " . table("member") . " where beid=:beid  and openid=" . $openid, array(':beid' => $_CMS['beid']));
     //print_r($memberGold);
-
+    echo 1;
 
 
     if (empty($applygold)) {
