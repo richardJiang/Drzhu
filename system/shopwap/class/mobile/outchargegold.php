@@ -14,12 +14,12 @@ if (empty($member['weixinhao']) || empty($member['realname'])) {
 if (empty($member["outgoldinfo"])) {
     message('请到个人资料处完善银行卡信息！', mobile_url('member'), 'error');
 }
-echo 0;
+
 $op = $_GP['op'] ? $_GP['op'] : 'display';
 if ($op == 'display') {
-    echo 1;
-    if (checksubmit('submit')) {
 
+    if (checksubmit('submit')) {
+        echo 1;
         if (empty($_GP['charge']) || round($_GP['charge'], 2) <= 0) {
             message("请输入要提取的金额");
         }
@@ -28,9 +28,10 @@ if ($op == 'display') {
             message('账户余额不足,最多能提取' . $member['gold'] . '元');
 
         }
-
+        echo 3;
         $ordersn = 'rg' . date('Ymd') . random(6, 1);
         $gold_order = mysqld_select("SELECT * FROM " . table('gold_teller') . " WHERE ordersn = '{$ordersn}' and beid=:beid", array(':beid' => $_CMS['beid']));
+        echo 4;
         if (!empty($gold_order['ordersn'])) {
             $ordersn = 'rg' . date('Ymd') . random(6, 1);
         }
