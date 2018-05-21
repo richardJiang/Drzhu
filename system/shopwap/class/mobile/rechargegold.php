@@ -1,4 +1,5 @@
 <?php
+echo 1;die;
 
 				
 		   $member=get_member_account(true,true);
