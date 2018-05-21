@@ -50,12 +50,12 @@ if ($op == 'display') {
     }
 
     //index
-    $applygold = mysqld_selectall("select case status when 0 then sum(fee) end as willPay,case status when 1 then sum(fee) end as isPay from " . table("gold_teller") . " where beid=:beid  and openid=" . $openid, array(':beid' => $_CMS['beid']));
-    print_r($applygold);
-    echo 1;
+    $applygold = mysqld_select("select case status when 0 then sum(fee) end as willPay,case status when 1 then sum(fee) end as isPay from " . table("gold_teller") . " where beid=:beid  and openid=" . $openid, array(':beid' => $_CMS['beid']));
+    //print_r($applygold);
+    //echo 1;
     //佣金计算
     $memberGold = mysqld_select("select gold,ffee+pfee+mfee as makeFee from " . table("member") . " where beid=:beid  and openid=" . $openid, array(':beid' => $_CMS['beid']));
-    print_r($memberGold);
+    //print_r($memberGold);
 
 
 
