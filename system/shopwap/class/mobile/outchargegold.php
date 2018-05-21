@@ -19,7 +19,7 @@ $op = $_GP['op'] ? $_GP['op'] : 'display';
 if ($op == 'display') {
 
     if (checksubmit('submit')) {
-        echo 1;
+
         if (empty($_GP['charge']) || round($_GP['charge'], 2) <= 0) {
             message("请输入要提取的金额");
         }
