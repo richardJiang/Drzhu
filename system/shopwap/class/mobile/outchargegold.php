@@ -17,9 +17,9 @@ if (empty($member["outgoldinfo"])) {
 
 $op = $_GP['op'] ? $_GP['op'] : 'display';
 if ($op == 'display') {
-    echo 0;
+
     if (checksubmit('submit')) {
-    echo 1;
+
         if (empty($_GP['charge']) || round($_GP['charge'], 2) <= 0) {
             message("请输入要提取的金额");
         }
@@ -28,14 +28,14 @@ if ($op == 'display') {
             message('账户余额不足,最多能提取' . $member['gold'] . '元');
 
         }
-        echo 3;
+
         $ordersn = 'rg' . date('Ymd') . random(6, 1);
         $gold_order = mysqld_select("SELECT * FROM " . table('gold_teller') . " WHERE ordersn = '{$ordersn}' and beid=:beid", array(':beid' => $_CMS['beid']));
-        echo 4;
+
         if (!empty($gold_order['ordersn'])) {
             $ordersn = 'rg' . date('Ymd') . random(6, 1);
         }
-        echo 2;
+
         member_gold($openid, $fee, 'usegold', '余额提取' . $fee . '元');
         mysqld_insert('gold_teller', array('openid' => $openid, 'fee' => $fee, 'status' => 0, 'ordersn' => $ordersn, 'createtime' => time(), 'beid' => $_CMS['beid']));
 
@@ -48,10 +48,13 @@ if ($op == 'display') {
         message('余额提取申请成功！', 'refresh', 'success');
         exit;
     }
+    echo 1;
     $applygold = mysqld_selectcolumn("select sum(fee) from " . table("gold_teller") . " where beid=:beid and status=0 and openid=" . $openid, array(':beid' => $_CMS['beid']));
+    echo 2;
     if (empty($applygold)) {
         $applygold = '0';
     }
+    echo 3;
     include themePage('outchargegold');
     exit;
 }

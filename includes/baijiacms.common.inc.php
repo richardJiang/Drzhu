@@ -102,12 +102,13 @@ function getDomainBeid()
 
 
 function checksubmit($action = 'submit') {
-    echo 11;
+
 	global $_CMS, $_GP;
+
 	if (empty($_GP[$action])) {
 		return FALSE;
 	}
-	echo 22;
+
 	if ( (($_SERVER['REQUEST_METHOD'] == 'POST') && (empty($_SERVER['HTTP_REFERER']) || preg_replace("/https?:\/\/([^\:\/]+).*/i", "\\1", $_SERVER['HTTP_REFERER']) == preg_replace("/([^\:]+).*/", "\\1", $_SERVER['HTTP_HOST'])))) {
 		return TRUE;
 	}
