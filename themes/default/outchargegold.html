@@ -30,7 +30,7 @@ input {-webkit-appearance:none; outline:none;}
 <div id="container">
  <div class="balance_img"><i class="fa fa-cny"></i></div>
    <div class="balance_text">您的当前余额</div>
-   <div class="balance_num">¥<?php  echo $member['gold'];?></span></div>
+   <div class="balance_num">¥<?php  echo $memberGold['gold'];?></span></div>
    <div class="balance_num" style="height:30px;">
    <input type="text" name="charge" id="money" value='' style="width:90%; height:38px; font-size:20px; margin:auto; border:1px solid #eee; padding:0px 2%; text-align:center;" placeholder="请输入提现的金额"/></div>
    <div class="button balance_sub1" onclick="document.getElementById('btsubmit').click();">确认提现</div>
@@ -38,8 +38,9 @@ input {-webkit-appearance:none; outline:none;}
 	<button type="submit" name="submit" id="btsubmit" value="submit"  style="display:none">申请提现</button>
 <div class="balance_sub3" onclick="location.href='<?php  echo mobile_url('outchargegold',array('op'=>'history'))?>'">提现记录</div>
 
-   <div class="balance_num" style="font-size:18px">已提现金额：¥ <?php  echo $member['outgold'];?></span></div>
-   <div class="balance_num" style="font-size:18px">申请中金额：¥ <?php  echo $applygold;?></span></div>
+   <div class="balance_num" style="font-size:18px">已提现金额：¥ <?php  echo $applygold['isPay'];?></span></div>
+   <div class="balance_num" style="font-size:18px">申请中金额：¥ <?php  echo $applygold["willPay"];?></span></div>
+    <div class="balance_num" style="font-size:18px">总分成金额：¥ <?php  echo $memberGold["makeFee"];?></span></div>
 </form>
 
 <?php  include page('footer');?>	
