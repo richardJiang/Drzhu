@@ -48,14 +48,14 @@ if ($op == 'display') {
         message('余额提取申请成功！', 'refresh', 'success');
         exit;
     }
-    echo 1;
+
     $applygold = mysqld_selectcolumn("select sum(fee) from " . table("gold_teller") . " where beid=:beid and status=0 and openid=" . $openid, array(':beid' => $_CMS['beid']));
-    echo 2;
+
     if (empty($applygold)) {
         $applygold = '0';
     }
-    echo 3;
-    include themePage('outchargegold');
+    include themePage('outchargegold_history');
+    //include themePage('outchargegold');
     exit;
 }
 
