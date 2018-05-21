@@ -49,7 +49,15 @@ if ($op == 'display') {
         exit;
     }
 
-    $applygold = mysqld_selectcolumn("select sum(fee) from " . table("gold_teller") . " where beid=:beid and status=0 and openid=" . $openid, array(':beid' => $_CMS['beid']));
+    //index
+    $applygold = mysqld_selectcolumn("select case status when 0 then sum(fee) end as willPay,case status when 1 then sum(fee) end as isPay from " . table("gold_teller") . " where beid=:beid  and openid=" . $openid, array(':beid' => $_CMS['beid']));
+    print_r($applygold);
+
+    //佣金计算
+    $memberGold = mysqld_selectcolumn("select fee,ffee+pfee+mfee as makeFee from " . table("member") . " where beid=:beid  and openid=" . $openid, array(':beid' => $_CMS['beid']));
+    print_r($memberGold);
+
+    
 
     if (empty($applygold)) {
         $applygold = '0';

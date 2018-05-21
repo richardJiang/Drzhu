@@ -31,6 +31,12 @@ input {-webkit-appearance:none; outline:none;}
  <div class="balance_img"><i class="fa fa-cny"></i></div>
    <div class="balance_text">您的当前余额</div>
    <div class="balance_num">¥<?php  echo $member['gold'];?></span></div>
+    <div class="balance_text">您的历史佣金总额</div>
+    <div class="balance_num">¥<?php  echo $member['makeGold'];?></span></div>
+    <div class="balance_text">您提取的余额</div>
+    <div class="balance_num">¥<?php  echo $member['getGold'];?></span></div>
+    <div class="balance_text">您历史充值金额</div>
+    <div class="balance_num">¥<?php  echo $member['pushGold'];?></span></div>
    <div class="balance_num" style="height:30px;">
    <input type="text" name="charge" id="money" value='' style="width:90%; height:38px; font-size:20px; margin:auto; border:1px solid #eee; padding:0px 2%; text-align:center;" placeholder="请输入提现的金额"/></div>
    <div class="button balance_sub1" onclick="document.getElementById('btsubmit').click();">确认提现</div>
