@@ -229,7 +229,7 @@ function themePage($filename)
         $theme = 'default';
     }
 
-    echo 1;
+
     if (!is_file($cachefile) || DEVELOPMENT) {
         $str = file_get_contents($template);
 
@@ -240,10 +240,10 @@ function themePage($filename)
         $content = preg_replace('/__RESOURCE__/', WEBSITE_ROOT . 'themes/' . $theme . '/__RESOURCE__', $str);
 
         file_put_contents($cachefile, $content);
-        echo 3;
+        echo $cachefile;
         return $cachefile;
     } else {
-        echo 2;
+
         return $cachefile;
     }
 
