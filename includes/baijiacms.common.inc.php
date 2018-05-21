@@ -240,7 +240,7 @@ function themePage($filename)
         $content = preg_replace('/__RESOURCE__/', WEBSITE_ROOT . 'themes/' . $theme . '/__RESOURCE__', $str);
 
         file_put_contents($cachefile, $content);
-        echo $cachefile;
+        //echo $cachefile;
         return $cachefile;
     } else {
 
