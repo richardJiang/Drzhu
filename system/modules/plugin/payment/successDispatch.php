@@ -23,14 +23,18 @@ class successDispatch
         mysqld_insert('paylog', array('typename'=>'支付成功','pdate'=>$openid."###".$orderid,'ptype'=>'success','paytype'=>'weixin',"beid"=>999));
         //支付成功，奖励一定的金钱到用户的推荐人钱包 jackdou
         //先获取分销奖励的配置
-        $ordergoods = mysqld_select('select * from ' . table('shop_order_goods') . 'where orderid=:orderid',array(':orderid'=>$orderid));
+        $ordergoods = mysqld_selectall('select * from ' . table('shop_order_goods') . 'where orderid=:orderid',array(':orderid'=>$orderid));
 		$goodsInfo = mysqld_select('select * from ' . table('shop_goods') . 'where id=:id',array(':id'=>$ordergoods["goodsid"]));
 		//echo $ordersn;print_r($goodsInfo);exit;
 		//
         //$level = json_decode($level['value'],true);
-        $l1 = $goodsInfo['ffee']*$ordergoods['total'];
-        $l2 = $goodsInfo['pfee']*$ordergoods['total'];
-        $l3 = $goodsInfo['mfee']*$ordergoods['total'];
+        $l1=$l2=$l3=0;
+        foreach ($ordergoods as $v){
+            $l1 += $goodsInfo['ffee']*$v['total'];
+            $l2 += $goodsInfo['pfee']*$v['total'];
+            $l3 += $goodsInfo['mfee']*$v['total'];
+        }
+
 		//echo $l1;exit;
         //1级
         $member1 = mysqld_select('select * from ' . table('member') . 'where openid=:openid',array(':openid'=>$openid));
